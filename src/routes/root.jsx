@@ -44,7 +44,7 @@ export default function Root() {
               <li>
                 <a href={`/todo`}>Todo</a>
               </li>
-              {todoList.map((todo) => (
+              {todoList?.map((todo) => (
                 <li key={todo.id}>
                   <a href={`/contacts/${todo.id}`}>{todo.text}</a>
                 </li>

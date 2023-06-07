@@ -4,6 +4,21 @@ import TodoApiService from '../services/TodoApiService';
 
 import { todoListState } from './atom';
 
+export const usefetchTodoItem = () => {
+  const addTodoItem = useSetRecoilState(todoListState);
+
+  return async () => {
+    try {
+      const newTodo = await TodoApiService.fetchTodoList();
+      addTodoItem(oldTodoList => [...oldTodoList, newTodo]);
+      return newTodo; 
+    } catch (error) {
+      console.error('Error adding todo:', error);
+      throw error;
+    }
+  };
+};
+
 export const useAddTodoItem = () => {
   const addTodoItem = useSetRecoilState(todoListState);
 
